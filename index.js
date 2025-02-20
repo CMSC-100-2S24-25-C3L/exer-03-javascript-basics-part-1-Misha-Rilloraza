@@ -1,16 +1,10 @@
 //NAME: MISHA SOPHIA S. RILLORAZA
 //STUDENT NUMBER: 2023-16578
 //SECTION: CMSC 100 C-3L
-//CODE DESCRIPTION: 
-//CREATE 3 FUNCTIONS: VALIDATE, REVERSE, STORE PW
 //REFERENCES: https://stackoverflow.com/questions/1027224/how-can-i-test-if-a-letter-in-a-string-is-uppercase-or-lowercase-using-javascrip
+//https://www.geeksforgeeks.org/how-a-function-returns-an-object-in-javascript/
 
-
-//VALIDATE: compare if 2 pw match
-//true:
-// - two passwords match 
-// - pw atleast 8 charas
-// - at least 1 number, 1uppercase, 1lowercase
+//VALIDATE
 function validatePassword(password1, password2){
     if (password1 == password2){ //match
         if(password1.length >= 8 && password2.length >= 8){ //8 charas
@@ -39,9 +33,9 @@ function validatePassword(password1, password2){
     }
     return false;
 }
-console.log(validatePassword("Pass1234", "Pass1234"));
+//debug console.log(validatePassword("Pass1234", "Pass1234"));
 
-/*
+
 //REVERSE: return reversed string of pw
 function reversePassword(name, password1, password2){
     let emptyString = "";
@@ -53,15 +47,28 @@ function reversePassword(name, password1, password2){
     //debug console.log(emptyString);
     return emptyString;
 }
-reversePassword("John", "Pass1234", "Pass1234")
-*/
+//debug console.log(reversePassword("John", "Pass1234", "Pass1234"))
 
-//STORE:   
-//3 parameters: 1 name and 2 pws
-//return an object (containing: name and newpassword as keys)
-//if pw is valid: use reverse to create new pw
-//else pw is not valid: use old pw for the new pw
 
+//STORE: return an object (containing: name and newpassword as keys)
+function storePassword(name, password1, password2){
+    let newPassword;
+
+    if(validatePassword(password1, password2)){
+        newPassword = reversePassword(password1, password2); //if pw is valid: use reverse to create new pw
+    } else {
+        newPassword = password1; ////else pw is not valid: use old pw for the new pw
+    }
+
+    let person = {
+        name: name,
+        newPassword: newPassword
+    };
+    return person;
+
+}
+console.log(storePassword("John", "Pass1234", "Pass1234"));
+console.log(storePassword("John", "Pass123", "Pass12345"));
 
 
 
